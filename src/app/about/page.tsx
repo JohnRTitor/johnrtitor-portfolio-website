@@ -1,4 +1,11 @@
+import { Metadata } from "next";
 import Image from "next/image";
+
+export const metadata: Metadata = {
+  title: "About Masum Reza (JohnRTitor)",
+  description:
+    "About section of personal portfolio website of Masum Reza, a Web3 and React developer",
+};
 
 export default function AboutPage() {
   return (
