@@ -1,12 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
-import { GitHubIcon } from "./icons";
+import { GitHubIcon } from "@/components/icons";
 import { ExternalLinkIcon } from "lucide-react";
 
 interface ProjectCardProps {
   title: string;
   description: string;
   technologies: string[];
+  category?: string; // Added category prop
   imageUrl: string;
   githubUrl?: string;
   liveUrl?: string;
