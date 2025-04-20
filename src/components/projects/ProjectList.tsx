@@ -40,7 +40,7 @@ export default function ProjectList({ initialProjects, categories }: ProjectList
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors
             ${
               category === selectedCategory
-                ? "bg-primary-light dark:bg-primary-dark text-white"
+                ? "bg-primary-light dark:bg-primary-dark text-black dark:text-white"
                 : "bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-700"
             }`}
           >
