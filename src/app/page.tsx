@@ -1,7 +1,7 @@
-import Hero from "@/components/Hero";
-import Skills from "@/components/Skills";
-import Education from "@/components/Education";
 import { Suspense } from "react";
+import Hero from "@/components/home/Hero";
+import Skills from "@/components/home/Skills";
+import Education from "@/components/home/Education";
 
 export default function Home() {
   return (
