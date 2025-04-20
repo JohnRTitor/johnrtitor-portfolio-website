@@ -17,7 +17,7 @@ export default function AboutPage() {
           <div className="md:w-1/3">
             <div className="relative w-full aspect-square rounded-lg overflow-hidden">
               <Image
-                src="/profile.png"
+                src="/images/profile.png"
                 alt="Masum Reza"
                 fill
                 style={{ objectFit: "cover" }}

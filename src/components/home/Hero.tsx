@@ -34,7 +34,7 @@ export default function Hero() {
         <div className="order-1 md:order-2 flex justify-center">
           <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-blue-600 dark:border-blue-400">
             <Image
-              src="/profile.png"
+              src="/images/profile.png"
               alt="Masum Reza"
               fill
               style={{ objectFit: "cover" }}

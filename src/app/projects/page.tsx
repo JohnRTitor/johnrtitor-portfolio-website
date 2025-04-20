@@ -15,8 +15,7 @@ const projects = [
       "A Web3 decentralized application built on Ethereum to demonstrate interact with basic smart contracts.",
     technologies: ["React", "Next.js", "Solidity", "Wagmi", "Viem", "Tailwind CSS"],
     category: "Web3",
-    imageUrl:
-      "https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=2832&auto=format&fit=crop",
+    imageUrl: "/images/projects/simple-storage-blockchain-sample-stock-photo.avif",
     githubUrl: "https://github.com/JohnRTitor/nextjs-simple-storage",
     liveUrl: "https://nextjs-simple-storage.vercel.app/",
   },
@@ -26,8 +25,7 @@ const projects = [
       "A reproducible NixOS configuration with dotfiles for a productive development environment, featuring custom modules and home-manager integration.",
     technologies: ["Nix", "Linux", "Shell"],
     category: "Linux",
-    imageUrl:
-      "https://images.unsplash.com/photo-1669023414162-5bb06bbff0ec?q=80&w=2940&auto=format&fit=crop",
+    imageUrl: "/images/projects/nix-conf-sample-stock-photo.avif",
     githubUrl: "https://github.com/JohnRTitor/nix-conf",
   },
   {
@@ -36,8 +34,7 @@ const projects = [
       "A modern portfolio website built with Next.js and Tailwind CSS, featuring responsive design and theme switching.",
     technologies: ["Next.js", "TypeScript", "Tailwind CSS", "React"],
     category: "Web Development",
-    imageUrl:
-      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=2938&auto=format&fit=crop",
+    imageUrl: "/images/projects/johnrtitor-portfolio-website-sample-stock-photo.avif",
     githubUrl: "https://github.com/JohnRTitor/johnrtitor-portfolio-website",
     liveUrl: "https://johnrtitor-portfolio-website.vercel.app/",
   },
