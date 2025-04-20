@@ -1,11 +1,18 @@
-export default function GitHubIcon({ size = 20 }: { size?: number }) {
+import { SVGProps } from "react";
+
+export default function GitHubIcon({
+  width = "20",
+  height = "20",
+  ...props
+}: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={size}
-      height={size}
-      fill="currentColor"
       viewBox="0 0 24 24"
+      fill="currentColor"
+      width={width}
+      height={height}
+      {...props}
     >
       <path
         d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8

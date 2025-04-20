@@ -1,11 +1,18 @@
-export default function TwitterIcon({ size = 20 }: { size?: number }) {
+import { SVGProps } from "react";
+
+export default function TwitterIcon({
+  width = "20",
+  height = "20",
+  ...props
+}: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={size}
-      height={size}
-      fill="currentColor"
       viewBox="0 0 24 24"
+      fill="currentColor"
+      width={width}
+      height={height}
+      {...props}
     >
       <path
         d="M24 4.557c-.883.392-1.832.656-2.828.775
