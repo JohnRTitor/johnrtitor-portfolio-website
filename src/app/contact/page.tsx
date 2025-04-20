@@ -1,8 +1,9 @@
 import { DiscordIcon, TelegramIcon } from "@/components/icons";
 import { MatrixIcon } from "@/components/icons/MatrixIcon";
-import { MapPinIcon } from "lucide-react";
+import { MapPinIcon, ClockIcon } from "lucide-react";
 import { Metadata } from "next";
 import React from "react";
+import HybridISTClock from "@/components/contact/HybridISTClock";
 
 export const metadata: Metadata = {
   title: "Contact Masum Reza (JohnRTitor)",
@@ -11,6 +12,31 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
+  // Get current time in IST (UTC+5:30) for initial server render
+  const now = new Date();
+
+  // Format the time in IST
+  const timeOptions: Intl.DateTimeFormatOptions = {
+    timeZone: "Asia/Kolkata",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true,
+  };
+
+  const initialTime = now.toLocaleTimeString("en-US", timeOptions);
+
+  // Format the date in IST
+  const dateOptions: Intl.DateTimeFormatOptions = {
+    timeZone: "Asia/Kolkata",
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+
+  const initialDate = now.toLocaleDateString("en-US", dateOptions);
+
   const contactInfo = [
     /*
     {
@@ -66,7 +92,7 @@ export default function ContactPage() {
           */}
 
           {/* Contact information section */}
-          <div>
+          <div className="lg:col-span-2 mx-auto w-full max-w-2xl">
             <h2 className="text-2xl font-bold mb-6">Contact information</h2>
             <div className="bg-white dark:bg-slate-800 rounded-xl shadow-md p-6">
               <div className="grid gap-8">
@@ -94,8 +120,28 @@ export default function ContactPage() {
                 ))}
               </div>
 
+              {/* Current time section */}
+              <div className="my-8 py-6 border-y border-gray-200 dark:border-gray-700">
+                <div className="flex items-start gap-4">
+                  <div className="text-xl text-primary-light dark:text-primary-dark">
+                    <ClockIcon width="24" height="24" />
+                  </div>
+                  <div className="flex flex-col md:flex-row md:items-center justify-between w-full">
+                    <div>
+                      <h3 className="font-medium text-lg">Current time in India</h3>
+                      <p className="text-gray-600 dark:text-gray-300">
+                        When planning a call or meeting
+                      </p>
+                    </div>
+                    <div className="mt-3 md:mt-0">
+                      <HybridISTClock initialTime={initialTime} initialDate={initialDate} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               {/* Availability section */}
-              <div className="mt-10 pt-8 border-t border-gray-200 dark:border-gray-700">
+              <div>
                 <h3 className="font-medium text-lg mb-3">My Availability</h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">
                   I&apos;m currently available for freelance work or full-time positions. My
