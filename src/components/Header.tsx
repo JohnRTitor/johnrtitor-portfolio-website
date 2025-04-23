@@ -2,14 +2,19 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
 import { useTheme } from "@/lib/theme-provider";
-import { XIcon, MenuIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { MenuIcon } from "lucide-react";
 
 export default function Header() {
   const { theme, toggleTheme } = useTheme();
   const pathname = usePathname();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -17,6 +22,18 @@ export default function Header() {
     { href: "/projects", label: "Projects" },
     { href: "/contact", label: "Contact" },
   ];
+
+  const renderNavLink = (link: { href: string; label: string }) => (
+    <Link
+      key={link.href}
+      href={pathname === link.href ? "#" : link.href}
+      className={`transition-colors hover:text-blue-600 dark:hover:text-blue-400 ${
+        pathname === link.href ? "text-blue-600 dark:text-blue-400 font-medium" : ""
+      }`}
+    >
+      {link.label}
+    </Link>
+  );
 
   return (
     <header className="sticky top-0 z-50 bg-white dark:bg-slate-900 shadow-md dark:shadow-slate-800/50">
@@ -28,62 +45,41 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`hover:text-blue-600 dark:hover:text-blue-400 transition-colors ${
-                  pathname === link.href ? "text-blue-600 dark:text-blue-400 font-medium" : ""
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-              aria-label="Toggle theme"
-            >
+            {navLinks.map(renderNavLink)}
+            <Button variant="ghost" size="icon" aria-label="Toggle theme" onClick={toggleTheme}>
               {theme === "dark" ? "🌙" : "☀️"}
-            </button>
+            </Button>
           </nav>
 
-          {/* Mobile Navigation Button */}
-          <div className="md:hidden flex items-center">
-            <button
-              onClick={toggleTheme}
-              className="p-2 mr-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-              aria-label="Toggle theme"
-            >
+          {/* Mobile Navigation */}
+          <div className="md:hidden flex items-center gap-2">
+            <Button variant="ghost" size="icon" aria-label="Toggle theme" onClick={toggleTheme}>
               {theme === "dark" ? "🌙" : "☀️"}
-            </button>
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-              aria-label="Toggle menu"
-            >
-              {isMenuOpen ? <XIcon /> : <MenuIcon />}
-            </button>
+            </Button>
+
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" aria-label="Toggle menu">
+                  <MenuIcon />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="flex flex-col gap-2 p-2">
+                {navLinks.map((link) => (
+                  <DropdownMenuItem key={link.href} asChild disabled={link.href === pathname}>
+                    <Link
+                      href={link.href}
+                      className={
+                        "w-full transition-colors hover:text-blue-600 dark:hover:text-blue-400"
+                      }
+                    >
+                      {link.label}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
-
-        {/* Mobile Navigation Menu */}
-        {isMenuOpen && (
-          <nav className="md:hidden mt-4 flex flex-col space-y-4 pb-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`block hover:text-blue-600 dark:hover:text-blue-400 transition-colors ${
-                  pathname === link.href ? "text-blue-600 dark:text-blue-400 font-medium" : ""
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-        )}
       </div>
     </header>
   );
