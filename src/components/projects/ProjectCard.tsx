@@ -2,12 +2,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { GitHubIcon } from "@/components/icons";
 import { ExternalLinkIcon } from "lucide-react";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 interface ProjectCardProps {
   title: string;
   description: string;
   technologies: string[];
-  category?: string; // Added category prop
+  category?: string;
   imageUrl: string;
   githubUrl?: string;
   liveUrl?: string;
@@ -22,50 +25,56 @@ export default function ProjectCard({
   liveUrl,
 }: ProjectCardProps) {
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+    <Card className="bg-white dark:bg-slate-800 overflow-hidden h-full flex flex-col transition-all hover:shadow-md p-0">
       <div className="relative w-full h-48">
         <Image src={imageUrl} alt={title} fill className="object-cover" />
       </div>
 
-      <div className="p-6">
-        <h3 className="text-xl font-semibold mb-2">{title}</h3>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">{description}</p>
+      <CardHeader>
+        <h3 className="text-xl font-semibold">{title}</h3>
+      </CardHeader>
+
+      <CardContent className="flex-grow">
+        <p className="text-muted-foreground mb-4">{description}</p>
 
         <div className="flex flex-wrap gap-2 mb-4">
           {technologies.map((tech, index) => (
-            <span
-              key={index}
-              className="text-xs px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded-md"
-            >
+            <Badge key={index} variant="secondary" className="bg-gray-100 dark:bg-slate-700">
               {tech}
-            </span>
+            </Badge>
           ))}
         </div>
+      </CardContent>
 
-        <div className="flex gap-4">
-          {githubUrl && (
+      <CardFooter className="flex gap-4 pb-6">
+        {githubUrl && (
+          <Button asChild variant="outline" size="sm">
             <Link
               href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-700 hover:text-primary-light dark:text-gray-300 dark:hover:text-primary-dark flex items-center gap-1 transition-colors"
+              className="flex items-center gap-2"
             >
-              <GitHubIcon /> <span>Code</span>
+              <GitHubIcon className="h-4 w-4" />
+              <span>Code</span>
             </Link>
-          )}
+          </Button>
+        )}
 
-          {liveUrl && (
+        {liveUrl && (
+          <Button asChild variant="outline" size="sm">
             <Link
               href={liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-700 hover:text-primary-light dark:text-gray-300 dark:hover:text-primary-dark flex items-center gap-1 transition-colors"
+              className="flex items-center gap-2"
             >
-              <ExternalLinkIcon /> <span>Live Demo</span>
+              <ExternalLinkIcon className="h-4 w-4" />
+              <span>Live Demo</span>
             </Link>
-          )}
-        </div>
-      </div>
-    </div>
+          </Button>
+        )}
+      </CardFooter>
+    </Card>
   );
 }
