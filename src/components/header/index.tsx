@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useTheme } from "@/lib/theme-provider";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -11,9 +10,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { MenuIcon } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
-  const { theme, toggleTheme } = useTheme();
   const pathname = usePathname();
 
   const navLinks = [
@@ -46,16 +45,12 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             {navLinks.map(renderNavLink)}
-            <Button variant="ghost" size="icon" aria-label="Toggle theme" onClick={toggleTheme}>
-              {theme === "dark" ? "🌙" : "☀️"}
-            </Button>
+            <ThemeToggle />
           </nav>
 
           {/* Mobile Navigation */}
           <div className="md:hidden flex items-center gap-2">
-            <Button variant="ghost" size="icon" aria-label="Toggle theme" onClick={toggleTheme}>
-              {theme === "dark" ? "🌙" : "☀️"}
-            </Button>
+            <ThemeToggle />
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
