@@ -2,8 +2,8 @@ import { DiscordIcon, TelegramIcon } from "@/components/icons";
 import { MatrixIcon } from "@/components/icons/MatrixIcon";
 import { MapPinIcon, ClockIcon } from "lucide-react";
 import { Metadata } from "next";
-import React from "react";
 import HybridISTClock from "@/components/contact/HybridISTClock";
+import { Card, CardContent } from "@/components/ui/card";
 
 export const metadata: Metadata = {
   title: "Contact Masum Reza (JohnRTitor)",
@@ -84,89 +84,83 @@ export default function ContactPage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/*
-            <div>
-              <h2 className="text-2xl font-bold mb-6">Send me a message</h2>
-              <ContactForm />
-            </div>
-          */}
-
-          {/* Contact information section */}
           <div className="lg:col-span-2 mx-auto w-full max-w-2xl">
             <h2 className="text-2xl font-bold mb-6">Contact information</h2>
-            <div className="bg-white dark:bg-slate-800 rounded-xl shadow-md p-6">
-              <div className="grid gap-8">
-                {contactInfo.map((info, index) => (
-                  <div key={index} className="flex items-start gap-4">
+            <Card className="p-0 overflow-hidden bg-white dark:bg-slate-800">
+              <CardContent className="p-6">
+                <div className="grid gap-8">
+                  {contactInfo.map((info, index) => (
+                    <div key={index} className="flex items-start gap-4">
+                      <div className="text-xl text-primary-light dark:text-primary-dark">
+                        {info.icon}
+                      </div>
+                      <div>
+                        <h3 className="font-medium text-lg">{info.title}</h3>
+                        {info.link ? (
+                          <a
+                            href={info.link}
+                            className="text-gray-600 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark transition-colors"
+                            target={info.link.startsWith("http") ? "_blank" : undefined}
+                            rel={info.link.startsWith("http") ? "noopener noreferrer" : undefined}
+                          >
+                            {info.detail}
+                          </a>
+                        ) : (
+                          <p className="text-gray-600 dark:text-gray-300">{info.detail}</p>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Current time section - using original border styling */}
+                <div className="my-8 py-6 border-y border-gray-200 dark:border-gray-700">
+                  <div className="flex items-start gap-4">
                     <div className="text-xl text-primary-light dark:text-primary-dark">
-                      {info.icon}
+                      <ClockIcon width="24" height="24" />
                     </div>
-                    <div>
-                      <h3 className="font-medium text-lg">{info.title}</h3>
-                      {info.link ? (
-                        <a
-                          href={info.link}
-                          className="text-gray-600 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark transition-colors"
-                          target={info.link.startsWith("http") ? "_blank" : undefined}
-                          rel={info.link.startsWith("http") ? "noopener noreferrer" : undefined}
-                        >
-                          {info.detail}
-                        </a>
-                      ) : (
-                        <p className="text-gray-600 dark:text-gray-300">{info.detail}</p>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Current time section */}
-              <div className="my-8 py-6 border-y border-gray-200 dark:border-gray-700">
-                <div className="flex items-start gap-4">
-                  <div className="text-xl text-primary-light dark:text-primary-dark">
-                    <ClockIcon width="24" height="24" />
-                  </div>
-                  <div className="flex flex-col md:flex-row md:items-center justify-between w-full">
-                    <div>
-                      <h3 className="font-medium text-lg">Current time in India</h3>
-                      <p className="text-gray-600 dark:text-gray-300">
-                        When planning a call or meeting
-                      </p>
-                    </div>
-                    <div className="mt-3 md:mt-0">
-                      <HybridISTClock initialTime={initialTime} initialDate={initialDate} />
+                    <div className="flex flex-col md:flex-row md:items-center justify-between w-full">
+                      <div>
+                        <h3 className="font-medium text-lg">Current time in India</h3>
+                        <p className="text-gray-600 dark:text-gray-300">
+                          When planning a call or meeting
+                        </p>
+                      </div>
+                      <div className="mt-3 md:mt-0">
+                        <HybridISTClock initialTime={initialTime} initialDate={initialDate} />
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Availability section */}
-              <div>
-                <h3 className="font-medium text-lg mb-3">My Availability</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  I&apos;m currently available for freelance work or full-time positions. My
-                  working hours are 9 AM to 6 PM IST.
-                </p>
-                <div className="flex flex-col space-y-2">
-                  <div className="flex justify-between">
-                    <span>Monday - Friday</span>
-                    <span>9:00 AM - 6:00 PM</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Saturday</span>
-                    <span>10:00 AM - 4:00 PM</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Sunday</span>
-                    <span>Closed</span>
+                {/* Availability section */}
+                <div>
+                  <h3 className="font-medium text-lg mb-3">My Availability</h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">
+                    I&apos;m currently available for freelance work or full-time positions. My
+                    working hours are 9 AM to 6 PM IST.
+                  </p>
+                  <div className="flex flex-col space-y-2">
+                    <div className="flex justify-between">
+                      <span>Monday - Friday</span>
+                      <span>9:00 AM - 6:00 PM</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Saturday</span>
+                      <span>10:00 AM - 4:00 PM</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Sunday</span>
+                      <span>Closed</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
 
-        {/* Map or additional content can be added here */}
+        {/* Let's Connect section - with original styling */}
         <div className="mt-16 p-6 bg-surface-light dark:bg-surface-dark rounded-2xl text-center">
           <h2 className="text-2xl font-bold mb-4">Let&apos;s Connect</h2>
           <p className="max-w-2xl mx-auto">
