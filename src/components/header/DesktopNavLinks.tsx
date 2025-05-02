@@ -15,7 +15,8 @@ export default function DesktopNavLinks({ links }: NavLinksProps) {
       {links.map((link) => (
         <Link
           key={link.href}
-          href={pathname === link.href ? "#" : link.href}
+          href={link.href}
+          onClick={pathname === link.href ? (e) => e.preventDefault() : undefined}
           className={`transition-colors hover:text-blue-600 dark:hover:text-blue-400 ${
             pathname === link.href ? "text-blue-600 dark:text-blue-400 font-medium" : ""
           }`}
