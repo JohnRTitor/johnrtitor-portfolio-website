@@ -14,6 +14,7 @@ interface ProjectCardProps {
   imageUrl: string;
   githubUrl?: string;
   liveUrl?: string;
+  isFirst?: boolean;
 }
 
 export default function ProjectCard({
@@ -23,11 +24,19 @@ export default function ProjectCard({
   imageUrl,
   githubUrl,
   liveUrl,
+  isFirst = false,
 }: ProjectCardProps) {
   return (
     <Card className="bg-white dark:bg-slate-800 overflow-hidden h-full flex flex-col transition-all hover:shadow-md p-0">
       <div className="relative w-full h-48">
-        <Image src={imageUrl} alt={title} fill className="object-cover" />
+        <Image
+          src={imageUrl}
+          alt={title}
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover transition-transform duration-300 hover:scale-105"
+          priority={isFirst}
+        />
       </div>
 
       <CardHeader>

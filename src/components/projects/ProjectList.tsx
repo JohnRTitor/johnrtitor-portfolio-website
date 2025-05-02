@@ -50,7 +50,11 @@ export default function ProjectList({ initialProjects, categories }: ProjectList
       {/* Projects grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredProjects.map((project, index) => (
-          <ProjectCard key={index} {...project} />
+          <ProjectCard
+            key={index}
+            {...project}
+            isFirst={index === 0} // Prioritize the first project image
+          />
         ))}
       </div>
 
