@@ -47,7 +47,7 @@ export default function ProjectsPage() {
   return (
     <div className="py-12 md:py-16">
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        <div className="max-w-3xl mx-auto text-center mb-16 animate-fade-in">
           <h1 className="text-4xl font-bold mb-4">My Projects</h1>
           <p className="text-lg text-gray-600 dark:text-gray-300">
             Here are some of the projects I&apos;ve worked on. Each project represents a unique
@@ -59,7 +59,7 @@ export default function ProjectsPage() {
         <ProjectList initialProjects={projects} categories={categories} />
 
         {/* Call to action */}
-        <div className="mt-20 text-center">
+        <div className="mt-20 text-center animate-fade-in animate-delay-500">
           <h2 className="text-2xl font-bold mb-4">Looking for more?</h2>
           <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">
             Check out my GitHub profile for more projects and contributions to open source.
@@ -68,7 +68,7 @@ export default function ProjectsPage() {
             href="https://github.com/JohnRTitor"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-primary-light hover:bg-primary-light/90 dark:bg-primary-dark dark:hover:bg-primary-dark/90 text-white px-6 py-3 rounded-md font-medium transition-colors"
+            className="inline-flex items-center gap-2 bg-primary-light hover:bg-primary-light/90 dark:bg-primary-dark dark:hover:bg-primary-dark/90 text-white px-6 py-3 rounded-md font-medium transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
           >
             View GitHub Profile
           </a>
